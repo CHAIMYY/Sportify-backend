@@ -15,7 +15,7 @@ router.post('/login', authController.login);
 // event curd 
 
 router.post('/api/event/create', eventController.createEvent);
-
+router.get('/api/event/getevents',eventController.getevents);
 
 
 
