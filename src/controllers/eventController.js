@@ -28,3 +28,13 @@ exports.createEvent = async (req, res) => {
       res.status(500).json({ message: 'Error updating event', error: err });
     }
   };
+
+  exports.deleteEvent = async (req, res) => {
+    try {
+      const deleteEvent = await Event.findByIdAndDelete(req.params.id);
+      if (!deleteEvent) return res.status(404).json({ message: 'event not found' });
+      res.json({ message: 'event deleted', event: deleteEvent });
+    } catch (err) {
+      res.status(500).json({ message: 'Error deleting event', error: err });
+    }
+  };

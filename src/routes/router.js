@@ -17,6 +17,6 @@ router.post('/login', authController.login);
 router.post('/api/event/create', eventController.createEvent);
 router.get('/api/event/getevents',eventController.getevents);
 router.put('/api/event/editEvent/:id',eventController.updateEvent);
-
+router.delete('/api/event/deleteEvent/:id',eventController.deleteEvent);
 
 module.exports = router;
