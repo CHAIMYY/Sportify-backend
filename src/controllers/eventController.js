@@ -10,3 +10,31 @@ exports.createEvent = async (req, res) => {
       res.status(500).json({ message: 'Error creating event', error: err });
     }
   };
+
+  exports.getevents = async (req, res) => {
+    try {
+      const events = await Event.find();
+      res.json(events);
+    } catch (err) {
+      res.status(500).json({ message: 'Error fetching events', error: err });
+    }
+  };
+  exports.updateEvent = async (req, res) => {
+    try {
+      const updateEvent = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      if (!updateEvent) return res.status(404).json({ message: 'event not found' });
+      res.json(updateEvent);
+    } catch (err) {
+      res.status(500).json({ message: 'Error updating event', error: err });
+    }
+  };
+
+  exports.deleteEvent = async (req, res) => {
+    try {
+      const deleteEvent = await Event.findByIdAndDelete(req.params.id);
+      if (!deleteEvent) return res.status(404).json({ message: 'event not found' });
+      res.json({ message: 'event deleted', event: deleteEvent });
+    } catch (err) {
+      res.status(500).json({ message: 'Error deleting event', error: err });
+    }
+  };
