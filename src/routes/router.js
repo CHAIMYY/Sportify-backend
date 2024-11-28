@@ -22,6 +22,6 @@ router.delete('/api/event/deleteEvent/:id',eventController.deleteEvent);
 
 // inscription crud
 
-router.post('/events/:id/add-participant', inscriptionController.addParticipant);
+router.post('/events/:id/add-participant',authenticateJWT,isOrganisateur, inscriptionController.addParticipants);
 
 module.exports = router;
